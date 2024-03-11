@@ -21,8 +21,11 @@ def productDetail(request,id,slug):
     urun.reviewsCount = urun.reviewsCount + 1
     urun.save()
     images = Images.objects.filter(product_id=id)
+    comments = Comment.objects.filter(product_id=id)
     context = {"urun": urun,
-               "images": images}
+               "images": images,
+               "comments": comments,
+               }
     return render(request, 'urun_detay.html', context)
 
 
@@ -37,19 +40,19 @@ def search(request):
     return HttpResponseRedirect('/')
 
 
-def addComment(request):
+def addComment(request, id):
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            data = Comment
+            data = Comment()
             data.subject = form.cleaned_data['subject']
             data.comment = form.cleaned_data['comment']
             data.rate = form.cleaned_data['rate']
             data.ip = request.META.get('REMOTE_ADDR')
             current_user = request.user
             data.user_id = current_user.id
-            data.product = form.cleaned_data['id']
+            data.product_id= id
             data.save()
             messages.success(request, 'Yorumunuz başarıyla kaydedildi!')
             return HttpResponseRedirect(url)

@@ -70,7 +70,7 @@
                     <small class="pt-1"> Görüntülenme Sayısı : {{ urun.reviewsCount}} <i class="fa-solid fa-eye"></i></small>
                 </div>
                 <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                <p class="mb-4">{{ urun.description }}</p>
+                <p class="mb-4">{{ urun.detail }}</p>
                 <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                     <form>
@@ -143,7 +143,7 @@
                 </div>
                  </form>
                 <div class="d-flex pt-2">
-                    <p class="text-dark font-weight-medium mb-0 mr-2">Add Favorite</p>
+                    <p class="text-dark font-weight-medium mb-0 mr-2"><a href="/order/addfavorite/{{ urun.id }}">Add Favorite</a></p>
                     <div class="d-inline-flex">
                         <a class="text-dark px-2" href="/order/addfavorite/{{ urun.id }}">
                             <i class="fab fa-facebook-f"> </i>
@@ -215,6 +215,8 @@
                             <div class="col-md-6">
                                 <h4 class="mb-4">1 review for "Colorful Stylish Shirt"</h4>
                                 {% for yorum in comments %}
+
+
                                 <div class="media mb-4">
                                     <img src="{{ yorum.user.userprofile.image.url}}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
                                     <div class="media-body">
@@ -261,20 +263,21 @@
                                     <div class="form-group">
 
                                         <label for="message">Subject</label>
-                                        <input name="subject" class="input" class="form-control" type="text" placeholder="Your subject" />
+                                        <input name="subject" class="form-control input" type="text" placeholder="Your subject" />
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Your Review *</label>
-                                             <textarea name="comment" class="input" placeholder="Your review"></textarea>
+                                             <textarea name="comment" class="form-control input" placeholder="Your review"></textarea>
 
                                     </div>
 
                                     <div class="form-group mb-0">
 
                                         {% if user.id is not None %}
+{#                                        {% if user.is_authenticated %}#}
                                                      <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
                                   {% else %}
-                                                    You must be logged in to post a review
+                                                    You must be logged in to post a review lütfen oturum açın
                                                 {% endif %}
                                     </div>
                                 </form>
@@ -290,8 +293,7 @@
 
 
 
-{% endblock %}
+ {% endblock %}
 
-{% block foot %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% block foot %}<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock %}

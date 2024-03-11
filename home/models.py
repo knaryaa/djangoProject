@@ -16,7 +16,7 @@ class Setting(models.Model):
     smtpserver = models.CharField(blank=True, max_length=50)
     smtpemail = models.CharField(blank=True, max_length=50)
     smtppassword = models.CharField(blank=True, max_length=10)
-    smtpport = models.IntegerField(blank=True, max_length=5)
+    smtpport = models.CharField(blank=True, max_length=5)
     icon = models.ImageField(blank=True, upload_to='images/')
     facebook = models.CharField(blank=True, max_length=50)
     instagram = models.CharField(blank=True, max_length=50)

@@ -27,6 +27,8 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('search/', product_views.search, name='search'),
     path('product/', include('product.urls')),
+    path('order/', include('order.urls')),
+    path('user/', include('user.urls')),
     path('category/<int:id>/<slug:slug>', product_views.categoryProducts, name="categoryProducts"),
     #blog sayfaları
     path('hakkimizda', home_views.hakkimizda, name = 'hakkimizda'),
